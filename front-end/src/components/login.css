@@ -1,0 +1,45 @@
+.logContainer{
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    margin: auto;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    color: rgb(57, 132, 185);
+    display: flex;
+}
+
+.logButton{
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(36, 0, 126);
+    cursor: pointer;
+}
+
+
+.fail{
+    color: red;
+    font-size: 15px;
+    text-align: center;
+}
+
+.close{
+    position: absolute;
+    top:5px;
+    right: 5px;
+    cursor: pointer;
+}
