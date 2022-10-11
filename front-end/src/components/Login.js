@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import Pin from "@mui/icons-material/LocationOn";
-import Close from "@mui/icons-material/Close";
 import "./login.css";
 import axios from "axios";
 import google from "./image/google.png";
@@ -28,7 +27,7 @@ const Login = ({
       username: name.current.value,
       password: password.current.value,
     };
-
+    
     try {
       const res = await axios.post(
         "http://localhost:3000/api/users/login",
@@ -67,19 +66,19 @@ const Login = ({
         <span>OR</span>
         <ul>
           <li>
-            <a href="https://google.com" src={google}>
+            <a href="https://google.com">
               {" "}
               <img className="icons" src={google} alt="google image" />
             </a>
           </li>
           <li>
-            <a href="https://twitter.com" src={google}>
+            <a href="https://twitter.com">
               {" "}
               <img className="icons" src={twitter} alt="google image" />
             </a>
           </li>
           <li>
-            <a href="https://facebook.com" src={google}>
+            <a href="https://facebook.com">
               {" "}
               <img className="icons" src={facebook} alt="google image" />
             </a>
