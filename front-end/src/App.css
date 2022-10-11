@@ -55,7 +55,7 @@ textarea::placeholder {
 }
 
 .logout {
-  background-color: tomato;
+  background-color: #283739;
   cursor: pointer;
 }
 

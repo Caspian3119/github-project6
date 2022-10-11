@@ -9,6 +9,7 @@ const Register = ({ setShowRegister, setShowLogin }) => {
   const name = useRef();
   const email = useRef();
   const password = useRef();
+  const regex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/
 
   const showForm = () => {
     setShowRegister(false);
@@ -21,15 +22,27 @@ const Register = ({ setShowRegister, setShowLogin }) => {
       email: email.current.value,
       password: password.current.value,
     };
-    if (newUser.username == "") {
+    if(newUser.username === ""){
+      alert("Please Input a username")
     }
-    try {
-      axios.post("http://localhost:3000/api/users/register", newUser);
-      setSuccess(true);
-      setFailed(false);
-    } catch (err) {
-      setFailed(err);
+    else if(!newUser.email.match(regex)){
+      alert("Invalid email address")
     }
+    else if(newUser.password === ""){
+      alert("Please a password")
+    }
+    else if(newUser.password.length < 6){
+      alert("Please make your password longer")
+    }else{
+      try {
+        axios.post("http://localhost:3000/api/users/register", newUser);
+        setSuccess(true);
+        setFailed(false);
+      } catch (err) {
+        setFailed(err);
+      }
+    }
+    
   };
   return (
     <div className="container">
