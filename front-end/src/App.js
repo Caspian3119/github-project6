@@ -77,9 +77,10 @@ function App() {
 
   const handleDeletePin = (id) => {
     const currentPins = [...pins];
-    const res = axios.delete(`http://localhost:3000/api/pins/${id}`)
-    const deletedPins = (currentPins.filter((pins) => pins.id !== res.id));
-    setPins(deletedPins)
+    axios.delete(`http://localhost:3000/api/pins/${id}`).then((response) => {
+      const deletedPins = currentPins.filter((pins) => pins._id !== id);
+      setPins(deletedPins);
+    });
   };
 
   return (
@@ -88,7 +89,7 @@ function App() {
         {...viewState}
         transitionDuration="200"
         mapboxAccessToken="pk.eyJ1IjoiY2FzcGlhbjEwIiwiYSI6ImNsOHZuaTZhYzA0eDEzb3BsNnhtcDZrNTIifQ.KX9-HSWQIoGo5ffmBxXodg"
-        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapStyle="mapbox://styles/caspian10/cl95e63bz000a14o4yn2wufdu"
         onMove={(evt) => setViewState(evt.viewState)}
         onDblClick={handleAddClick}
       >
@@ -127,16 +128,21 @@ function App() {
                   <div className="stars">
                     {Array(p.rating).fill(<Star className="star" />)}
                   </div>
+                  
                   <label>Information</label>
                   <span className="username">
                     Created by <b>{p.username}</b>
                   </span>
-                  <button
-                    onClick={() => handleDeletePin(p._id)}
-                    className="delete-button"
-                  >
-                    Delete Pin
-                  </button>
+                  {p.username === currentUser ? (
+                    <button
+                      onClick={() => handleDeletePin(p._id)}
+                      className="delete-button"
+                    >
+                      Delete Pin
+                    </button>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </Popup>
             )}
