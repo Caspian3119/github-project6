@@ -2,7 +2,6 @@ const router = require("express").Router();
 const Pin = require("../models/Pin");
 
 //create a pin
-
 router.post("/", async (req, res) => {
   const newPin = new Pin(req.body);
   try {
@@ -22,4 +21,15 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//delete specific pin
+router.delete("/:id", async (req, res) => {
+  try {
+    const pins = await Pin.deleteOne({ _id: req.params.id });
+    res.status(200).json(pins);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

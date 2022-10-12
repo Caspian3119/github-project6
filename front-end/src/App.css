@@ -47,6 +47,15 @@ textarea::placeholder {
   cursor: pointer;
 }
 
+.delete-button{
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  background-color: tomato;
+  cursor: pointer;
+}
+
 .button {
   border: none;
   padding: 10px;

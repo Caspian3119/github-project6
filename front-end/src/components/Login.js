@@ -16,7 +16,7 @@ const Login = ({
   const name = useRef();
   const password = useRef();
 
-  const showRegister = (e) => {
+  const showRegister = () => {
     setShowRegister(true);
     setShowLogin(false);
   };

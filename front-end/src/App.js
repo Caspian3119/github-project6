@@ -74,6 +74,14 @@ function App() {
     setCurrentUser(null);
     setShowLogin(true);
   };
+
+  const handleDeletePin = (id) => {
+    const currentPins = [...pins];
+    const res = axios.delete(`http://localhost:3000/api/pins/${id}`)
+    const deletedPins = (currentPins.filter((pins) => pins.id !== res.id));
+    setPins(deletedPins)
+  };
+
   return (
     <div className="map-container">
       <Map
@@ -123,6 +131,12 @@ function App() {
                   <span className="username">
                     Created by <b>{p.username}</b>
                   </span>
+                  <button
+                    onClick={() => handleDeletePin(p._id)}
+                    className="delete-button"
+                  >
+                    Delete Pin
+                  </button>
                 </div>
               </Popup>
             )}
@@ -162,6 +176,7 @@ function App() {
             </div>
           </Popup>
         )}
+
         {currentUser ? (
           <button className="button logout" onClick={handleLogOut}>
             Log out
