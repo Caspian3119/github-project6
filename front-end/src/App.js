@@ -128,7 +128,7 @@ function App() {
                   <div className="stars">
                     {Array(p.rating).fill(<Star className="star" />)}
                   </div>
-                  
+
                   <label>Information</label>
                   <span className="username">
                     Created by <b>{p.username}</b>
