@@ -3,7 +3,6 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 //register
-
 router.post("/register", async (req, res) => {
   try {
     //generate password
@@ -25,24 +24,25 @@ router.post("/register", async (req, res) => {
 });
 
 //login
-router.post("/login", async (req, res) => {
-  try {
+router.post("/login",  (req, res) => {
     //find user
-    const user = await User.findOne({ username: req.body.username });
-    !user && res.status(400).json("Wrong username or pasword");
-
-    //validate password
-    const validatePassword = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
-    !validatePassword && res.status(400).json("Wrong username or paswword");
-
-    //send req
-    res.status(200).json({ _id: user._id, username: user.username });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  User.findOne({ username: req.body.username }).then(user => {
+      if(!user)
+        return res.status(400).json("Wrong username or password");
+      //validate password
+      bcrypt.compare(req.body.password, user.password, (err, data) => {
+        if(err){
+          throw new Error(err)
+       }
+        if(data){
+         //send req
+        res.status(200).json({ _id: user._id, username: user.username}); 
+       }
+       else{
+        res.status(400).json("Wrong username or password");
+       }
+      })
+    })
 });
 
 module.exports = router;

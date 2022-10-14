@@ -27,7 +27,7 @@ const Login = ({
       username: name.current.value,
       password: password.current.value,
     };
-    
+
     try {
       const res = await axios.post(
         "http://localhost:3000/api/users/login",
@@ -55,7 +55,7 @@ const Login = ({
           <label>Password</label>
           <input type="password" placeholder="password" ref={password}></input>
           <button className="logButton">Login</button>
-          {failed && <span className="fail">Something went wrong</span>}
+          {failed && <span className="fail">Wrong Username or password</span>}
         </form>
         <span>
           Don't Have an Account?{" "}
@@ -67,19 +67,16 @@ const Login = ({
         <ul>
           <li>
             <a href="https://google.com">
-              {" "}
               <img className="icons" src={google} alt="google image" />
             </a>
           </li>
           <li>
             <a href="https://twitter.com">
-              {" "}
               <img className="icons" src={twitter} alt="google image" />
             </a>
           </li>
           <li>
             <a href="https://facebook.com">
-              {" "}
               <img className="icons" src={facebook} alt="google image" />
             </a>
           </li>
