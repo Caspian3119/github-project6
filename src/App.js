@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     const getPins = async () => {
       try {
-        axios.get("http://localhost:3000/api/pins").then((response) => {
+        axios.get("https://project-6-back-end.herokuapp.com/api/pins").then((response) => {
           setPins(response.data);
         });
       } catch (err) {
@@ -61,7 +61,7 @@ function App() {
       long: newPin.lng,
     };
     try {
-      const res = await axios.post("http://localhost:3000/api/pins", newPins);
+      const res = await axios.post("https://project-6-back-end.herokuapp.com/api/pins", newPins);
       setPins([...pins, res.data]);
       setNewPin(null);
     } catch (err) {
@@ -77,7 +77,7 @@ function App() {
 
   const handleDeletePin = (id) => {
     const currentPins = [...pins];
-    axios.delete(`http://localhost:3000/api/pins/${id}`).then((response) => {
+    axios.delete(`https://project-6-back-end.herokuapp.com/api/pins/${id}`).then((response) => {
       const deletedPins = currentPins.filter((pins) => pins._id !== id);
       setPins(deletedPins);
     });

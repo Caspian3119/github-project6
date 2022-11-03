@@ -41,7 +41,7 @@ const Register = ({ setShowRegister, setShowLogin }) => {
       alert("Please make your password longer");
     } else {
       try {
-        axios.post("http://localhost:3000/api/users/register", newUser);
+        axios.post("https://project-6-back-end.herokuapp.com/api/users/register", newUser);
         setSuccess(true);
         setFailed(false);
       } catch (err) {

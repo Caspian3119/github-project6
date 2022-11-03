@@ -30,7 +30,7 @@ const Login = ({
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/users/login",
+        "https://project-6-back-end.herokuapp.com/api/users/login",
         User
       );
       localStorage.setItem("user", res.data.username);
